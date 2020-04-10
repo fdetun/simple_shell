@@ -4,40 +4,46 @@
  * @buf: buffer to read
  * Return: NULL
 */
-char *rec_env(char *buf)
+char *rec_env(char *cmd)
 {
-	struct stat buff;
-	char *str;
-	char *s;
-	char *token;
-	int i = 0;
-	char* args[100];
-	char* tab[100];
+	char **en = environ;
+	char *path_array[100];
+	char *s2 = cmd;
+	char *new_var = NULL;
+	struct stat buf;
+	int i = 0, j = 0;
+	char *path_get;
+	char *first_path;
+	char *path_tokens;
 
-	s = getenv("PATH");
-        token = strtok(s,":");
-	while (token != NULL)
+	path_get = _getenv(en);
+	first_path = _strdup(path_get);
+	path_tokens = strtok(first_path, ":");
+	new_var = malloc(sizeof(char) * 100);
+	while (path_tokens != NULL)
 	{
-		args[i] = token;
-		i++;
-		token = strtok(NULL,":");
+		path_array[i++] = path_tokens;
+		path_tokens = strtok(NULL, ":");
 	}
-        i = 0;
-	while (args[i])
+	path_array[i] = NULL;
+	for (j = 0; path_array[j]; j++)
 	{
-		str = (char*)malloc(100);
-		_strcat(str, args[i]);
-		_strcat(str, "/");
-		_strcat(str,buf);
-		tab[i] = str;
-		if (stat(tab[i], &buff) == 0)
+		_strcpy(new_var, path_array[j]);
+		_strcat(new_var, "/");
+		_strcat(new_var, s2);
+		_strcat(new_var, "\0");
+
+		if (stat(new_var, &buf) == 0)
 		{
-			return (tab[i]);
+			free(first_path);
+			return (new_var);
 		}
-		i++;
+		else
+			new_var[0] = 0;
 	}
-	free(str);
-	free(token);
+	free(first_path);
+	free(new_var);
+	if (stat(cmd, &buf) == 0)
+		return (strdup(cmd));
 	return (NULL);
-
 }
