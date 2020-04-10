@@ -19,6 +19,5 @@ void han_func(int sig);
 char **splt(char *raw_cmd, char *limit);
 char *rec_env(char *buf);
 void check_mn(int pid , char **cmd);
-/**static void free_array(char **array);
-*/
+char *_getenv(char **tk);
 #endif
