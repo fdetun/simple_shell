@@ -14,10 +14,14 @@
 #include <sys/stat.h>
 
 extern char **environ;
-void print_prompt ();
+void print_prompt(void);
 void han_func(int sig);
 char **splt(char *raw_cmd, char *limit);
 char *rec_env(char *buf);
-void check_mn(int pid , char **cmd);
+void check_mn(int pid, char **cmd);
 char *_getenv(char **tk);
+char *_strdup(char *str);
+char *_strcat(char *dest, char *src);
+char *_strcpy(char *dest, char *src);
+
 #endif

@@ -26,9 +26,9 @@ char *rec_env(char *buf)
 	while (args[i])
 	{
 		str = (char*)malloc(100);
-		strcat(str, args[i]);
-		strcat(str, "/");
-		strcat(str,buf);
+		_strcat(str, args[i]);
+		_strcat(str, "/");
+		_strcat(str,buf);
 		tab[i] = str;
 		if (stat(tab[i], &buff) == 0)
 		{

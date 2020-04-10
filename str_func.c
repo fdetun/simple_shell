@@ -1,4 +1,37 @@
+#include <stdio.h>
 #include "simple_shell.h"
+#include <stdlib.h>
+
+/**
+ * _strdup - _strdup.
+ * @str: variable
+ * Return: a Or NULL.
+*/
+char *_strdup(char *str)
+{
+char *a;
+int j = 0;
+int i;
+
+if (str == NULL)
+{
+return (NULL);
+}
+while (str[j] != '\0')
+j++;
+j = j + 1;
+a = malloc(j *sizeof(char));
+if (a == NULL)
+{
+return (NULL);
+}
+for (i = 0; str[i] != '\0'; i++)
+{
+a[i] = str[i];
+}
+return (a);
+}
+
 /**
  * _strcpy - copies the string
  * @dest: char the destinated
