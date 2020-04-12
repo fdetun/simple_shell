@@ -24,4 +24,8 @@ char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 char *spltarr(char *nr, char *c, char **arr);
+unsigned int _strcspn(char *s, char *pre);
+char *_strchr(char *s, char b);
+char *_strtok(char *s, char *deli);
+int _strcmp(char *s1, char *s2);
 #endif

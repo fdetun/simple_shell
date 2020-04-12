@@ -25,16 +25,15 @@ int main ()
 		{
 			continue;
 		}
-		if (strcmp(cmd[0], "exit") == 0)
+		if (_strcmp(cmd[0], "exit") == 0)
 		{
 			break;
 		}
 		pid = fork();
 		check_mn(pid, cmd);
 	}
-				free(cmd);
+			free(cmd);
 			free(buf);
 			fflush(stdout);
-	
 	return (0);
 }
