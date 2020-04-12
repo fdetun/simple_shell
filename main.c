@@ -14,27 +14,27 @@ int main ()
 	while (1)
 	{
 		print_prompt();
-		signal(SIGINT, han_func);
-		if (getline(&buf, &len, stdin) == EOF)
+		if (getline(&buf, &len, stdin) == -1)
 		{
-/**			if (isatty(0) == 1)
-			{
-*/				write(STDOUT_FILENO, "\n", 1);
-				break;
+			if (isatty(STDIN_FILENO) == 1)
+				write(1, "\n", 1);
+			break;
 		}
 		cmd = splt(buf, " \n\t");
 		if (cmd[0] == NULL)
 		{
-			free(cmd);
 			continue;
 		}
 		if (strcmp(cmd[0], "exit") == 0)
+		{
 			break;
+		}
 		pid = fork();
 		check_mn(pid, cmd);
 	}
-	fflush(stdout);
-	free(cmd);
-	free(buf);
+				free(cmd);
+			free(buf);
+			fflush(stdout);
+	
 	return (0);
 }

@@ -4,8 +4,9 @@
 */
 void print_prompt()
 {
-	if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, "$ ", 2);
+		if (isatty(STDIN_FILENO))
+			write(1, "$ ", 2);
+			signal(SIGINT, han_func);
 }
 /**
  * han_func - handle commands
@@ -15,7 +16,7 @@ void han_func(int sig)
 {
 	signal(sig, SIG_IGN);
 	write(STDERR_FILENO, "\n", 1);
-	print_prompt();
+	write(1, "$ ", 2);
 	signal(SIGINT, han_func);
 }
 /**

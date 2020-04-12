@@ -23,5 +23,5 @@ char *_getenv(char **tk);
 char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
-
+char *spltarr(char *nr, char *c, char **arr);
 #endif

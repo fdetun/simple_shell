@@ -1,49 +1,67 @@
 #include "simple_shell.h"
+
+/**
+ * spltarr - spltarr
+ * @nr: char to read
+ * @c: char to read
+ * @arr: char to read
+ * Return: nr Or NULL
+*/
+
+char *spltarr(char *nr, char *c, char **arr)
+{
+struct stat rf;
+int j = 0;
+
+while (arr[j])
+{
+_strcpy(nr, arr[j]);
+_strcat(nr, "/");
+_strcat(nr, c);
+_strcat(nr, "\0");
+j++;
+if (stat(nr, &rf) == 0)
+{
+return (nr);
+}
+}
+return (NULL);
+}
+
 /**
  * rec_env - env
- * @buf: buffer to read
+ * @b: buffer to read
  * Return: NULL
 */
-char *rec_env(char *cmd)
+char *rec_env(char *b)
 {
-	char **en = environ;
-	char *path_array[100];
-	char *s2 = cmd;
-	char *new_var = NULL;
-	struct stat buf;
-	int i = 0, j = 0;
-	char *path_get;
-	char *first_path;
-	char *path_tokens;
+char **en = environ;
+char *arr[1024];
+char *newarr = NULL;
+struct stat ref;
+int i = 0;
+char *a, *tooks, *myge;
 
-	path_get = _getenv(en);
-	first_path = _strdup(path_get);
-	path_tokens = strtok(first_path, ":");
-	new_var = malloc(sizeof(char) * 100);
-	while (path_tokens != NULL)
-	{
-		path_array[i++] = path_tokens;
-		path_tokens = strtok(NULL, ":");
-	}
-	path_array[i] = NULL;
-	for (j = 0; path_array[j]; j++)
-	{
-		_strcpy(new_var, path_array[j]);
-		_strcat(new_var, "/");
-		_strcat(new_var, s2);
-		_strcat(new_var, "\0");
-
-		if (stat(new_var, &buf) == 0)
-		{
-			free(first_path);
-			return (new_var);
-		}
-		else
-			new_var[0] = 0;
-	}
-	free(first_path);
-	free(new_var);
-	if (stat(cmd, &buf) == 0)
-		return (strdup(cmd));
-	return (NULL);
+myge = _getenv(en);
+a = _strdup(myge);
+tooks = strtok(a, ":");
+newarr = malloc(sizeof(char) * 1024);
+while (tooks)
+{
+arr[i] = tooks;
+tooks = strtok(NULL, ":");
+i++;
+}
+arr[i] = NULL;
+if (spltarr(newarr, b, arr))
+{
+return (spltarr(newarr, b, arr));
+}
+else
+newarr[0] = 0;
+free(a);
+free(newarr);
+if (stat(b, &ref) == 0)
+return (strdup(b));
+return (NULL);
 }

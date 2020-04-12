@@ -10,8 +10,8 @@
 char *_strdup(char *str)
 {
 char *a;
-int j = 0;
-int i;
+unsigned int j = 0;
+unsigned int i = 0;
 
 if (str == NULL)
 {
@@ -25,10 +25,8 @@ if (a == NULL)
 {
 return (NULL);
 }
-for (i = 0; str[i] != '\0'; i++)
-{
-a[i] = str[i];
-}
+while ((a[i] = str[i]) != '\0')
+i++;
 return (a);
 }
 
@@ -60,16 +58,16 @@ char *_strcpy(char *dest, char *src)
 */
 char *_strcat(char *dest, char *src)
 {
-	int i = 0;
-	int j = 0;
-
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0')
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-	return (dest);
+int i, j = 0;
+while (dest[j] != '\0')
+{
+j++;
+}
+for (i = 0; src[i] != '\0'; i++)
+{
+dest[j] = src[i];
+j++;
+}
+dest [j] = '\0';
+return (dest);
 }
