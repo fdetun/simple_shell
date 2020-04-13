@@ -7,23 +7,23 @@
 */
 char **splt(char *cm, char *limit)
 {
-char	*ptr = NULL;
-char	**cmd = NULL;
-size_t	i = 0;
+	char	*ptr = NULL;
+	char	**cmd = NULL;
+	size_t	i = 0;
 
-ptr = strtok(cm, limit);
-cmd = malloc(1024);
-if (!cmd)
-{
-perror("Error\n");
-exit(99);
-}
-while (ptr)
-{
-cmd[i] = _strdup(ptr);
-ptr = strtok(NULL, limit);
-++i;
-}
-cmd[i] = NULL;
-return (cmd);
+	ptr = strtok(cm, limit);
+	cmd = malloc(1024);
+	if (!cmd)
+	{
+		perror("Error\n");
+		exit(99);
+	}
+	while (ptr)
+	{
+		cmd[i] = _strdup(ptr);
+		ptr = strtok(NULL, limit);
+		++i;
+	}
+	cmd[i] = NULL;
+	return (cmd);
 }

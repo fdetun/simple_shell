@@ -15,7 +15,7 @@ int main(int argc __attribute__((unused)), char **argv)
 	while (1)
 	{
 		print_prompt();
-		f++;	
+		f++;
 		if (getline(&buf, &len, stdin) == -1)
 		{
 			if (isatty(STDIN_FILENO) == 1)

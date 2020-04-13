@@ -9,25 +9,21 @@
 */
 char *_strdup(char *str)
 {
-char *a;
-unsigned int j = 0;
-unsigned int i = 0;
+	char *a;
+	unsigned int j = 0;
+	unsigned int i = 0;
 
-if (str == NULL)
-{
-return (NULL);
-}
-while (str[j] != '\0')
-j++;
-j = j + 1;
-a = malloc(j *sizeof(char));
-if (a == NULL)
-{
-return (NULL);
-}
-while ((a[i] = str[i]) != '\0')
-i++;
-return (a);
+	if (str == NULL)
+		return (NULL);
+	while (str[j] != '\0')
+		j++;
+	j = j + 1;
+	a = malloc(j * sizeof(char));
+	if (a == NULL)
+		return (NULL);
+	while ((a[i] = str[i]) != '\0')
+		i++;
+	return (a);
 }
 
 /**
@@ -58,18 +54,17 @@ char *_strcpy(char *dest, char *src)
 */
 char *_strcat(char *dest, char *src)
 {
-int i, j = 0;
-while (dest[j] != '\0')
-{
-j++;
-}
-for (i = 0; src[i] != '\0'; i++)
-{
-dest[j] = src[i];
-j++;
-}
-dest [j] = '\0';
-return (dest);
+	int i, j = 0;
+
+	while (dest[j] != '\0')
+		j++;
+	for (i = 0; src[i] != '\0'; i++)
+	{
+		dest[j] = src[i];
+		j++;
+	}
+	dest[j] = '\0';
+	return (dest);
 }
 /**
  * _strcmp - compares two strings

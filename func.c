@@ -13,25 +13,25 @@ int _putchar(char c)
 }
 /**
  * pn - pn.
- *@n : n
+ * @count: counter
  * Return: Always 0.
  */
 void pn(int count)
 {
-if ((count / 10) > 0)
-pn(count / 10);
-_putchar((count % 10) + '0');
+	if ((count / 10) > 0)
+		pn(count / 10);
+	_putchar((count % 10) + '0');
 }
 
 #include "simple_shell.h"
 /**
  * print_prompt - print the prompt
 */
-void print_prompt()
+void print_prompt(void)
 {
-		if (isatty(STDIN_FILENO))
-			write(1, SHELL, _strlen(SHELL));
-			signal(SIGINT, han_func);
+	if (isatty(STDIN_FILENO))
+		write(1, SHELL, _strlen(SHELL));
+	signal(SIGINT, han_func);
 }
 /**
  * han_func - handle commands
@@ -48,11 +48,12 @@ void han_func(int sig)
  * check_mn - cheker for main
  * @pid: to check
  * @cmd: command to check
+ * @av: av
+ * @f: f
 */
-void check_mn(int pid , char **cmd, char **av, int f)
+void check_mn(int pid, char **cmd, char **av, int f)
 {
 	char *doc = NULL;
-	char counter;
 
 	doc = splt_env(cmd[0]);
 	if (pid == -1)
@@ -66,12 +67,12 @@ void check_mn(int pid , char **cmd, char **av, int f)
 	{
 		if (doc == NULL)
 		{
-			write(1,av[0],_strlen(av[0]));
-			write(1,": ",2);
+			write(1, av[0], _strlen(av[0]));
+			write(1, ": ", 2);
 			pn(f);
-			write(1,": ",2);
-			write(1,cmd[0],_strlen(cmd[0]));
-			write(1,": not found\n",12);
+			write(1, ": ", 2);
+			write(1, cmd[0], _strlen(cmd[0]));
+			write(1, ": not found\n", 12);
 			fflush(stdout);
 		}
 		else if (execve(doc, cmd, environ) == -1)
