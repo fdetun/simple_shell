@@ -87,3 +87,17 @@ int _strcmp(char *s1, char *s2)
 	f += s1[i] - s2[i];
 	return (f);
 }
+
+/**
+ *_strlen - return the length of string s
+ *@s:string
+ *Return:length of string s
+ **/
+int _strlen(char *s)
+{
+	int i =  0;
+
+	while (s[i])
+		i++;
+	return (i);
+}

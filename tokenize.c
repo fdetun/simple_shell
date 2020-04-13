@@ -11,7 +11,7 @@ char	*ptr = NULL;
 char	**cmd = NULL;
 size_t	i = 0;
 
-ptr = _strtok(cm, limit);
+ptr = strtok(cm, limit);
 cmd = malloc(1024);
 if (!cmd)
 {
@@ -21,7 +21,7 @@ exit(99);
 while (ptr)
 {
 cmd[i] = _strdup(ptr);
-ptr = _strtok(NULL, limit);
+ptr = strtok(NULL, limit);
 ++i;
 }
 cmd[i] = NULL;

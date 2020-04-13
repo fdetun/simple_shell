@@ -29,11 +29,11 @@ return (NULL);
 }
 
 /**
- * rec_env - env
+ * splt_env - env
  * @b: buffer to read
  * Return: NULL
 */
-char *rec_env(char *b)
+char *splt_env(char *b)
 {
 char **en = environ;
 char *arr[1024];
@@ -44,12 +44,12 @@ char *a, *tooks, *myge;
 
 myge = _getenv(en);
 a = _strdup(myge);
-tooks = strtok(a, ":");
+tooks = _strtok(a, ":");
 newarr = malloc(sizeof(char) * 1024);
 while (tooks)
 {
 arr[i] = tooks;
-tooks = strtok(NULL, ":");
+tooks = _strtok(NULL, ":");
 i++;
 }
 arr[i] = NULL;

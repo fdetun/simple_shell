@@ -4,16 +4,18 @@
  * A simple of shell
  * Return: 0 Always
 */
-int main ()
+int main(int argc __attribute__((unused)), char **argv)
 {
 	char *buf = NULL;
 	pid_t pid;
 	char	**cmd = NULL;
 	size_t len;
+	int f = 0;
 
 	while (1)
 	{
 		print_prompt();
+		f++;	
 		if (getline(&buf, &len, stdin) == -1)
 		{
 			if (isatty(STDIN_FILENO) == 1)
@@ -27,10 +29,11 @@ int main ()
 		}
 		if (_strcmp(cmd[0], "exit") == 0)
 		{
+			exit(0);
 			break;
 		}
 		pid = fork();
-		check_mn(pid, cmd);
+		check_mn(pid, cmd, argv, f);
 	}
 			free(cmd);
 			free(buf);
