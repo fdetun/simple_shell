@@ -27,12 +27,23 @@ return (0);
 
 void execd(char **cmdbuilt)
 {
+char **en = environ;
 if (_strcmp(cmdbuilt[0], "exit") == 0)
 exit(0);
 else if (_strcmp(cmdbuilt[0], "cd") == 0)
-if (chdir(cmdbuilt[1]) == -1)
+{
+if (cmdbuilt[1] == NULL)
+{
+chdir(_gethome(en));
+}
+else if (strcmp(cmdbuilt[1], "-") == 0)
+{
+chdir(_getoldpwd(en));
+}
+else if (chdir(cmdbuilt[1]) == -1)
 {
 perror("chdir error");
+}
 }
 }
 

@@ -35,12 +35,6 @@ int main(int argc __attribute__((unused)), char **argv)
 				get = execute_cmd(all_cmd_buf[i], argv, f);
 		if (get == 1)
 			continue;
-		if (get == 2)
-		{
-			exit(0);
-			break;
-		}
-
 	}
 			free(cmd), free(buf), fflush(stdout);
 	return (0);

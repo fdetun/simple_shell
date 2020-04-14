@@ -15,10 +15,11 @@
 #define SHELL "#cisfun$ "
 
 /**
- * struct sp
- * @all_cmd_buf: all command lines
- * @flag: int flag
-*/
+ * struct split_cmd - split_cmd
+ * @all_cmd_buf: all_cmd_buf
+ * @number_cmd: a number_cmd
+ * @flag: flag
+ */
 typedef struct split_cmd
 {
 	char **all_cmd_buf;
@@ -48,4 +49,6 @@ int execute_cmd(char *buf, char **argv, int f);
 split_cmd check_split(char *buf);
 int check_built(char *src);
 void execd(char **cmdbuilt);
+char *_gethome(char **tk);
+char *_getoldpwd(char **tk);
 #endif
