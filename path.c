@@ -60,6 +60,6 @@ char *splt_env(char *b)
 	free(a);
 	free(newarr);
 	if (stat(b, &ref) == 0)
-		return (strdup(b));
+		return (_strdup(b));
 	return (NULL);
 }

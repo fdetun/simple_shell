@@ -74,6 +74,7 @@ void check_mn(int pid, char **cmd, char **av, int f)
 			write(1, cmd[0], _strlen(cmd[0]));
 			write(1, ": not found\n", 12);
 			fflush(stdout);
+			exit(127);
 		}
 		else if (execve(doc, cmd, environ) == -1)
 		{

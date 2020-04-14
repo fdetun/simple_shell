@@ -26,8 +26,9 @@ char *_getenv(char **tk)
 		}
 		i++;
 	}
+	
 	buf = malloc(1024);
-	i = strlen(pth);
+	i = _strlen(pth);
 	j = 0;
 	while (ref[i] != '\0')
 	{
