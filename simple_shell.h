@@ -14,6 +14,18 @@
 #include <sys/stat.h>
 #define SHELL "#cisfun$ "
 
+/**
+ * struct sp
+ * @all_cmd_buf: all command lines
+ * @flag: int flag
+*/
+typedef struct split_cmd
+{
+	char **all_cmd_buf;
+	int number_cmd;
+	int flag;
+} split_cmd;
+
 extern char **environ;
 void print_prompt(void);
 void han_func(int sig);
@@ -32,4 +44,6 @@ unsigned int _strcspn(char *s, char *pre);
 char *_strchr(char *s, char b);
 char *_strtok(char *s, char *deli);
 int _strcmp(char *s1, char *s2);
+int execute_cmd(char *buf, char **argv, int f);
+split_cmd check_split(char *buf);
 #endif
