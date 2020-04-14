@@ -46,4 +46,6 @@ char *_strtok(char *s, char *deli);
 int _strcmp(char *s1, char *s2);
 int execute_cmd(char *buf, char **argv, int f);
 split_cmd check_split(char *buf);
+int check_built(char *src);
+void execd(char **cmdbuilt);
 #endif

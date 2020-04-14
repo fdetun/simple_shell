@@ -26,7 +26,6 @@ char *_getenv(char **tk)
 		}
 		i++;
 	}
-	
 	buf = malloc(1024);
 	i = _strlen(pth);
 	j = 0;
