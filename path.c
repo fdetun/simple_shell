@@ -23,6 +23,7 @@ char *spltarr(char *nr, char *c, char **arr)
 		if (stat(nr, &rf) == 0)
 			return (nr);
 	}
+	free(nr);
 	return (NULL);
 }
 

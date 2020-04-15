@@ -29,7 +29,10 @@ void execd(char **cmdbuilt)
 {
 char **en = environ;
 if (_strcmp(cmdbuilt[0], "exit") == 0)
+{
+free(cmdbuilt);
 exit(0);
+}
 else if (_strcmp(cmdbuilt[0], "cd") == 0)
 {
 if (cmdbuilt[1] == NULL)
@@ -42,9 +45,11 @@ chdir(_getoldpwd(en));
 }
 else if (chdir(cmdbuilt[1]) == -1)
 {
+free(cmdbuilt);
 perror("chdir error");
 }
 }
+free(cmdbuilt);
 }
 
 
@@ -62,7 +67,10 @@ char **cmd = NULL;
 
 cmd = splt(buf, " \t\r\n\a\v:");
 if (cmd[0] == NULL)
+{
+free(cmd);
 return (1);
+}
 if (check_built(cmd[0]) == 1)
 {
 execd(cmd);
@@ -72,6 +80,7 @@ else
 pid = fork();
 check_mn(pid, cmd, argv, f);
 }
+free(cmd);
 return (0);
 }
 /**
