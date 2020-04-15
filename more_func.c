@@ -36,7 +36,7 @@ if (cmdbuilt[1] == NULL)
 {
 chdir(_gethome(en));
 }
-else if (strcmp(cmdbuilt[1], "-") == 0)
+else if (_strcmp(cmdbuilt[1], "-") == 0)
 {
 chdir(_getoldpwd(en));
 }
