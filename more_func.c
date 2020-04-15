@@ -60,7 +60,7 @@ int execute_cmd(char *buf, char **argv, int f)
 pid_t pid;
 char **cmd = NULL;
 
-cmd = splt(buf, " \n\t");
+cmd = splt(buf, " \t\r\n\a\v:");
 if (cmd[0] == NULL)
 return (1);
 if (check_built(cmd[0]) == 1)
