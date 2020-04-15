@@ -41,7 +41,7 @@ void han_func(int sig)
 {
 	signal(sig, SIG_IGN);
 	write(STDERR_FILENO, "\n", 1);
-	write(1, SHELL, _strlen(SHELL));
+	write(STDOUT_FILENO, SHELL, _strlen(SHELL));
 	signal(SIGINT, han_func);
 }
 /**
@@ -67,12 +67,12 @@ void check_mn(int pid, char **cmd, char **av, int f)
 	{
 		if (doc == NULL)
 		{
-			write(1, av[0], _strlen(av[0]));
-			write(1, ": ", 2);
+			write(STDOUT_FILENO, av[0], _strlen(av[0]));
+			write(STDOUT_FILENO, ": ", 2);
 			pn(f);
-			write(1, ": ", 2);
-			write(1, cmd[0], _strlen(cmd[0]));
-			write(1, ": not found\n", 12);
+			write(STDOUT_FILENO, ": ", 2);
+			write(STDOUT_FILENO, cmd[0], _strlen(cmd[0]));
+			write(STDOUT_FILENO, ": not found\n", 12);
 			fflush(stdout);
 			exit(127);
 		}

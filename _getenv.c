@@ -5,36 +5,29 @@
  * Return: buf
 */
 
-char *_getenv(char **tk)
+char *_getenv(char *pth)
 {
-	int i, j;
-	char *ref, *buf;
-	char *pth = "PATH=";
+int i = 0, j;
+char **en = environ;
 
-	i = 0;
-	while (tk[i])
-	{
-		j = 0;
-		while (tk[i][j] == pth[j])
-		{
-			if (tk[i][j + 1] == pth[j + 1])
-			{
-				ref = tk[i];
-				break;
-			}
-			j++;
-		}
-		i++;
-	}
-	buf = malloc(1024);
-	i = _strlen(pth);
-	j = 0;
-	while (ref[i] != '\0')
-	{
-		buf[j] = ref[i];
-		i++;
-		j++;
-	}
-	buf[j] = '\0';
-	return (buf);
+if (pth == NULL)
+return (NULL);
+while (en[i])
+{
+j = 0;
+if (pth[j] == en[i][j])
+{
+for (j = 0; pth[j] != '\0'; j++)
+{
+if (pth[j] == en[i][j])
+continue;
+else
+break;
+}
+if (pth[j] == '\0')
+return (en[i] + j + 1);
+}
+i++;
+}
+return (NULL);
 }

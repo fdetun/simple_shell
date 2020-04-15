@@ -33,7 +33,7 @@ void han_func(int sig);
 int _putchar(char c);
 char **splt(char *raw_cmd, char *limit);
 char *splt_env(char *buf);
-char *_getenv(char **tk);
+char *_getenv(char *pth);
 char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);

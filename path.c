@@ -33,14 +33,13 @@ char *spltarr(char *nr, char *c, char **arr)
 */
 char *splt_env(char *b)
 {
-	char **en = environ;
 	char *arr[1024];
 	char *newarr = NULL;
 	struct stat ref;
 	int i = 0;
 	char *a, *tooks, *myge;
 
-	myge = _getenv(en);
+	myge = _getenv("PATH");
 	a = _strdup(myge);
 	tooks = _strtok(a, ":");
 	newarr = malloc(sizeof(char) * 1024);
