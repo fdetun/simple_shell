@@ -8,7 +8,7 @@
 */
 int main(int argc __attribute__((unused)), char **argv)
 {
-	char *buf = NULL, **cmd = NULL, **all_cmd_buf;
+	char *buf = NULL, **all_cmd_buf;
 	size_t len;
 	int f = 0, number_cmd = 0, i, flag, get;
 	split_cmd r;
@@ -33,9 +33,11 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (flag == 1)
 			for (i = 0; i < number_cmd; i++)
 				get = execute_cmd(all_cmd_buf[i], argv, f);
+		if (get == 3)
+			free(buf);
 		if (get == 1)
 			continue;
 	}
-			free(cmd), free(buf), fflush(stdout);
+	free(buf), fflush(stdout);
 	return (0);
 }

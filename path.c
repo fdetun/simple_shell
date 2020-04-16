@@ -1,5 +1,4 @@
 #include "simple_shell.h"
-
 /**
  * spltarr - spltarr
  * @nr: char to read
@@ -21,9 +20,10 @@ char *spltarr(char *nr, char *c, char **arr)
 		_strcat(nr, "\0");
 		j++;
 		if (stat(nr, &rf) == 0)
+		{
 			return (nr);
+		}
 	}
-	free(nr);
 	return (NULL);
 }
 
@@ -60,6 +60,6 @@ char *splt_env(char *b)
 	free(a);
 	free(newarr);
 	if (stat(b, &ref) == 0)
-		return (_strdup(b));
+		return (b);
 	return (NULL);
 }

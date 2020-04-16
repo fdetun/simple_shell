@@ -16,14 +16,16 @@ char **splt(char *cm, char *limit)
 	if (!cmd)
 	{
 		perror("Error\n");
+		free(cmd);
+		free(cm);
 		exit(99);
 	}
-	while (ptr)
+	while (ptr != NULL)
 	{
-		cmd[i] = _strdup(ptr);
+		cmd[i++] = ptr;
 		ptr = _strtok(NULL, limit);
-		++i;
 	}
 	cmd[i] = NULL;
 	return (cmd);
 }
+

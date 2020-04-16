@@ -74,9 +74,10 @@ void check_mn(int pid, char **cmd, char **av, int f)
 			write(STDOUT_FILENO, cmd[0], _strlen(cmd[0]));
 			write(STDOUT_FILENO, ": not found\n", 12);
 			fflush(stdout);
+			free(cmd);
 			exit(127);
 		}
-		else if (execve(doc, cmd, environ) == -1)
+		if (execve(doc, cmd, environ) == -1)
 		{
 			perror("hsh");
 			fflush(stdout);

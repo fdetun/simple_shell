@@ -25,12 +25,14 @@ return (0);
  * Return: void
  */
 
-void execd(char **cmdbuilt)
+void execd(char **cmdbuilt, char *buf)
 {
 char **en = environ;
 if (_strcmp(cmdbuilt[0], "exit") == 0)
 {
 free(cmdbuilt);
+fflush(stdout);
+free(buf);
 exit(0);
 }
 else if (_strcmp(cmdbuilt[0], "cd") == 0)
@@ -45,11 +47,12 @@ chdir(_getoldpwd(en));
 }
 else if (chdir(cmdbuilt[1]) == -1)
 {
-free(cmdbuilt);
 perror("chdir error");
 }
 }
+fflush(stdout);
 free(cmdbuilt);
+fflush(stdout);
 }
 
 
@@ -66,6 +69,7 @@ pid_t pid;
 char **cmd = NULL;
 
 cmd = splt(buf, " \t\r\n\a\v:");
+
 if (cmd[0] == NULL)
 {
 free(cmd);
@@ -73,12 +77,14 @@ return (1);
 }
 if (check_built(cmd[0]) == 1)
 {
-execd(cmd);
+
+execd(cmd, buf);
 }
 else
 {
 pid = fork();
 check_mn(pid, cmd, argv, f);
+return(3);
 }
 free(cmd);
 return (0);
@@ -91,8 +97,8 @@ return (0);
 split_cmd check_split(char *buf)
 {
 	int length = 0, flag = 0, number_cmd = 0;
-	char *all_cmd;
-	char **all_cmd_buf;
+	char *all_cmd = NULL;
+	char **all_cmd_buf = NULL;
 	split_cmd r;
 
 	while (buf[length] != '\0')
@@ -113,7 +119,9 @@ split_cmd check_split(char *buf)
 		length++;
 	}
 	r.all_cmd_buf = all_cmd_buf;
+	free(all_cmd_buf);
 	r.number_cmd = number_cmd;
+	free(all_cmd);
 	r.flag = flag;
 	return (r);
 }
